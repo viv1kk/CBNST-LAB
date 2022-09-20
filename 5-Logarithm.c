@@ -3,10 +3,11 @@
 
 int main() {
   double x, result;
-  printf("Enter a number : ");
-  scanf("%lf", &x);
+  int n;
+  printf("Enter Base and number : ");
+  scanf("%d %lf",&n, &x);
 
-  result = log(x);
+  result = log(x)/log(n);
   
   printf("Log base e of %.2lf = %.2lf", x, result);
   return 0;
