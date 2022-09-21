@@ -27,10 +27,7 @@ void findInterval(Inv* in)
                 in->x2 = x;
                 in->fx2 = solve;
             }
-            else
-            {
-                break;
-            }
+            else break;
         }
     }
     printf("The interval is %lf, %lf --- %lf, %lf\n\n", in->x1, in->x2, in->fx1, in->fx2);

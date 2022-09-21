@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 int main() {
-  double x, result;
-  printf("Enter a number : ");
-  scanf("%lf", &x);
+  double b, x, result;
+  printf("Enter base and number : ");
+  scanf("%lf%lf",&b, &x);
 
-  result = exp(x);
+  result = pow(b,x);
   
   printf("Exponential of %.2lf = %.2lf", x, result);
   return 0;
