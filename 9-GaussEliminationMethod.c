@@ -33,6 +33,11 @@ int main()
         printf("\n");
     }
 
+    printf("\nGiven Matrices :\n");
+    printMatrix(rhs, 1, n);
+    printMatrix(mat, n, n);
+    printf("\n");
+
     performRowOperations(mat, rhs, n);
 
     if(checkIfMatrixIsValid(mat, n))
@@ -59,6 +64,7 @@ int main()
     {
         printf("\nMatrix is not Valid for extracting Values!\n");
     }
+    printf("\nResultant Matrix :\n");
     printMatrix(mat, n, n);
     printMatrix(rhs, 1, n);
 
@@ -88,7 +94,6 @@ void performRowOperations(double* mat, double* rhs, int s)
                     scaleFunction(mat, rhs, temp1, s, j);
                     subtractFunc(mat, rhs, s, i, j);
                 }
-                
             }
             if(!checkUpperTriangle(mat, s)) return;
         }
