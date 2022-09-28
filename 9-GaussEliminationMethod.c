@@ -1,5 +1,8 @@
+//v2 --  Implemented downscale function with gcd
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define FLT_MIN  -5000000000000000000.0f
 
 void printMatrix(double*, int, int );
@@ -9,6 +12,8 @@ int checkIfMatrixIsValid(double*, int);
 void performRowOperations(double*, double*, int);
 void scaleFunction(double*, double*, double, int, int);
 void subtractFunc(double*, double*, int, int, int);
+void downscaleFunc(double*, double*, int, int);
+long int gcd(long int, long int);
 
 int main()
 {
@@ -79,9 +84,9 @@ void performRowOperations(double* mat, double* rhs, int s)
         int index;
         double temp1, temp2;
 
-        for(int i = 0; i < s; i++)
+        for(int i = 0; i < s; i++) // column
         {
-            for(int j = 0 ; j < s; j++)
+            for(int j = 0 ; j < s; j++) // rows
             {
                 index = (s*j)+i;
 
@@ -90,14 +95,44 @@ void performRowOperations(double* mat, double* rhs, int s)
                 {
                     temp2 = mat[index];
                     printf("\ntemp1 = %lf, temp2 = %lf\n",temp1, temp2);
+
+                    downscaleFunc(mat, rhs, s, i);
+                    downscaleFunc(mat, rhs, s, j);
+
+                    temp1 = mat[(s*i)+i];
+                    temp2 = mat[index];
+                    
                     scaleFunction(mat, rhs, temp2, s, i);
                     scaleFunction(mat, rhs, temp1, s, j);
+
                     subtractFunc(mat, rhs, s, i, j);
                 }
             }
             if(!checkUpperTriangle(mat, s)) return;
         }
     }
+}
+
+long int gcd(long int a, long int b)
+{
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+ 
+void downscaleFunc(double* mat, double* rhs, int s, int ind)
+{
+	int offset = (ind*s);
+	long int gcdx = mat[offset];
+	for(int i = 1; i < s; ++i)
+	{
+		gcdx = gcd(gcdx, (long int)mat[offset+i]);
+	}
+	if(gcdx > 0)
+	{
+		printf("gcdx is %d\n", gcdx);
+		scaleFunction(mat, rhs, (1.0/(double)gcdx), s, ind);
+	}
 }
 
 void scaleFunction(double* mat, double* rhs, double factor, int s, int ind)
