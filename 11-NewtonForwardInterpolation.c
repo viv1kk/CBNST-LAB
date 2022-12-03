@@ -18,7 +18,7 @@ int main()
 
     float h = (dt[1][0]-dt[0][0]);
     float x;
-    printf("Find the value of x ? : ");
+    printf("Find the value for x ? : ");
     scanf("%f", &x);
     float u = (x-dt[0][0])/h;
 
