@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<math.h>
-#define f(x, y) (1-y)
+#define f(x, y) (1.0f+(y*y))
 int main()
 {
     float x0, y0, h, x;
@@ -17,7 +17,8 @@ int main()
     float y = y0;
     for(float i = xi; i < x; i+=h)
     {
-        y = y +(h*f(i, y));
+        y = y +(h*f(i,y));
+
     }
     printf("The value of y = %f", y);
     return 0;

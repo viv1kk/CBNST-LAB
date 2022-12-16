@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define f(x) x*x*x
+#define f(x) (x*x*log(x)/log(10))
 #define MAX 100
 int main()
 {
@@ -32,6 +32,12 @@ int main()
     {
         a += y[i];
     }
+
+    for(int i = 0; i <=n; i++)
+    {
+        printf("%f %f\n", x[i], y[i]);
+    }
+    printf("\n");
     a*=2;
     a += (y[0]+y[n]);
     a *= (h/2.0f);
